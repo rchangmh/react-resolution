@@ -3,7 +3,17 @@ import { Input, Label, Header, Popup, Icon } from 'semantic-ui-react'
 import { login, padding, transition } from './styles'
 
 export default class Question extends Component {
+  state = {
+    value: ""
+  }
+
+  handleSubmit = () = {
+    console.log(this.state)
+      this.state.value = ""
+  }
+
   render() {
+
     return (
       <div style={padding}>
         <Header>{this.props.header}</Header>
@@ -21,12 +31,14 @@ export default class Question extends Component {
           action={{
             color: this.props.color,
             icon: this.props.icon,
-            onClick: this.props.action
+            onClick: () => handleSubmit()
           }}
           labelPosition="left"
           label={this.props.label}
           placeholder={this.props.metric}
           type="text"
+          value={this.state.value}
+          onChange={(e) => this.setState({ value: e.target.value })}
         />
       </div>
     )

@@ -1,43 +1,33 @@
 import React, { Component } from 'react'
-import {
-  Input,
-  Label,
-  Header,
-  Popup,
-  Icon,
-  Button
-} from 'semantic-ui-react'
-import { login, padBot, transition } from './styles'
+import { Input, Label, Header, Popup, Icon } from 'semantic-ui-react'
+import { login, padding, transition } from './styles'
 
 export default class Question extends Component {
-  state = {
-  }
-
   render() {
-
-    const test = () => console.log('hello world')
-
-    return(
-      <div>
-        <Header>{this.props.question}</Header>
+    return (
+      <div style={padding}>
+        <Header>{this.props.header}</Header>
         <p>
           {this.props.subtext}
-          <Popup
-            trigger={<Icon circular name='info' />}
-            content={this.props.subtext}
-            inverted
-          />
+          {this.props.popup && (
+            <Popup
+              trigger={<Icon circular name="info" />}
+              content={this.props.popup}
+              inverted
+            />
+          )}
         </p>
         <Input
-          action={{ 
-            color: 'green', 
+          action={{
+            color: this.props.color,
             icon: this.props.icon,
-            onClick: test
+            onClick: this.props.action
           }}
-          labelPosition='left'
+          labelPosition="left"
           label={this.props.label}
           placeholder={this.props.metric}
-          type='text' />
+          type="text"
+        />
       </div>
     )
   }

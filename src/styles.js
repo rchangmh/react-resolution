@@ -12,13 +12,13 @@ export const login = {
   minWidth: '300px'
 }
 
-export const padBot = {
-  paddingBottom: "20px",
+export const padding = {
+  padding: '15px',
 }
 
 export const transition = {
-  animation: "scale",
-  duration: "400"
+  animation: 'scale',
+  duration: '400'
 }
 
 // export const container = {

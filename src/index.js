@@ -10,23 +10,33 @@ class App extends Component {
     return(
       <div style={main}>
         <Segment style={login}>
-          <div style={padBot}>
             <Question 
-              question='final deploy'
+              header='final deploy'
               subtext='Enter an amount.  '
               metric='amount'
               label='$'
               icon='chevron right'
             />
-          </div>
-          <div style={padBot}>
             <Question
-              question='Hey!'
+              header='Hey!'
+              subtext='Enter your favorite food.  '
+              metric='Yes?'
+              icon='add'
+              color='red'
+            />
+            <Question
+              header='Hey!'
+              subtext='Enter your favorite food.  '
+              metric='Yes?'
+              label='+'
+              icon='check'
+            />
+            <Question
+              header='Hey!'
               subtext='Enter your favorite food.  '
               metric='Yes?'
               icon='add'
             />
-          </div>
         </Segment>
       </div>
     )

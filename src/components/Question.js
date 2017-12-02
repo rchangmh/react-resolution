@@ -9,9 +9,8 @@ export default class Question extends Component {
 
   handleSubmit = () => {
     console.log(this.state)
-    this.setState({ value: "" })
+    this.setState({ value: '' })
   }
-
 
   render() {
     return (

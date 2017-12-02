@@ -12,7 +12,7 @@ class App extends Component {
         <Segment style={login}>
           <div style={padBot}>
             <Question 
-              question='Max.'
+              question='final deploy'
               subtext='Enter an amount.  '
               metric='amount'
               label='$'

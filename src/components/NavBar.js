@@ -7,8 +7,8 @@ import gql from 'graphql-tag'
 import { client } from '../index'
 
 const mutation = gql`
-  mutation addTodo($text: String!) {
-    addTodo(text: $text) @client
+  mutation addTodo($message: String, $title: String) {
+    addTodo(message: $message, title: $title) @client
   }
 `
 
@@ -21,24 +21,32 @@ const query = gql`
   }
 `
 
-class NavBar extends Component {
+export default class NavBar extends Component {
   state = {
     activeItem: window.location.pathname
   }
 
+  // editState = async () => {
+  //   console.log(this.props)
+  //   const before = await client.query({ query })
+  //   console.log(before.data)
+  //   client.mutate((mutation))
+  //   const after = await client.query({ query })
+  //   console.log(after.data)
+  // }
+
   editState = async () => {
-    console.log(this.props)
-    const before = await client.query({ query })
-    console.log(before.data)
-    console.log(client)
-    await client.addTodo({
+    console.log('before')
+    console.log((await client.query({ query })).data)
+    await client.mutate({
+      mutation,
       variables: {
-        title: 'new to do',
-        message: 'finally!'
+        title: 'hello world',
+        message: 'oh what a world this is'
       }
     })
-    const after = await client.query({ query })
-    console.log(after.data)
+    console.log('after')
+    console.log((await client.query({ query })).data)
   }
 
   render() {
@@ -72,5 +80,3 @@ class NavBar extends Component {
     )
   }
 }
-
-export default graphql(mutation, { name: 'addTodo' })(NavBar)

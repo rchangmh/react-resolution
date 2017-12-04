@@ -6,7 +6,7 @@ import {
   Message,
   Transition
 } from 'semantic-ui-react'
-import { padBot, transition } from './styles'
+import { padBot, transition } from '../styles'
 
 export default class Login extends Component {
   state = {

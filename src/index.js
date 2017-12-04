@@ -4,13 +4,24 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './components/App'
 import { ApolloProvider } from 'react-apollo'
 import { ApolloClient } from 'apollo-client'
-import { HttpLink } from 'apollo-link-http'
+import { withClientState } from 'apollo-link-state'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import gql from 'graphql-tag'
 
-const local = withClientState({
+const localStore = withClientState({
   Query: {
-    todos: () => []
+    todos: () => [
+      {
+        message: 'do this',
+        title: 'to do 1',
+        __typename: 'Todo'
+      },
+      {
+        message: 'do that',
+        title: 'to do 2',
+        __typename: 'Todo'
+      }
+    ]
   },
   Mutation: {
     addTodo: (_, { message, title }, { cache }) => {
@@ -24,21 +35,10 @@ const local = withClientState({
   }
 })
 
-const client = new ApolloClient({
-  link: local,
+export const client = new ApolloClient({
+  link: localStore,
   cache: new InMemoryCache()
 })
-
-const query = gql`
-  query todos {
-    todos @client {
-      message
-      title
-    }
-  }
-`
-
-const initial = await client.query({ query })
 
 render(
   <ApolloProvider client={client}>

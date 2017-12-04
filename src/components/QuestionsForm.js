@@ -15,11 +15,6 @@ export default class QuestionsForm extends Component {
           header="Q2"
           handleSubmit={val => console.log(val)}
         />
-        <Question
-          color="blue"
-          header="Q3"
-          handleSubmit={val => console.log(val)}
-        />
       </div>
     )
   }

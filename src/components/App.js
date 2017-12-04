@@ -8,18 +8,34 @@ import QuestionsForm from './QuestionsForm'
 
 class NavBar extends Component {
   state = {
-    activeItem: window.location.pathname,
+    activeItem: window.location.pathname
   }
 
   render() {
-    return(
+    return (
       <Menu inverted>
         <Menu.Item
           as={Link}
-          to='/login'
-          name='Log In'
-          color='green'
-          onClick={(e, {to}) => this.setState({activeItem: to})}
+          to="/"
+          name="Home"
+          active={this.state.activeItem === '/'}
+          onClick={(e, { to }) => this.setState({ activeItem: to })}
+        />
+        <Menu.Item
+          as={Link}
+          to="/login"
+          name="Log In"
+          color="green"
+          active={this.state.activeItem === '/login'}
+          onClick={(e, { to }) => this.setState({ activeItem: to })}
+        />
+        <Menu.Item
+          as={Link}
+          to="/questionsform"
+          name="Form"
+          color="red"
+          active={this.state.activeItem === '/questionsform'}
+          onClick={(e, { to }) => this.setState({ activeItem: to })}
         />
       </Menu>
     )
@@ -27,12 +43,15 @@ class NavBar extends Component {
 }
 
 export default class App extends Component {
-
   render() {
     return (
       <div style={viewport}>
         <Segment style={container}>
-          <Menu />
+          <NavBar />
+          <Switch>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/questionsform" component={QuestionsForm} />
+          </Switch>
         </Segment>
       </div>
     )

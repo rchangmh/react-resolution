@@ -43,8 +43,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <Form>
-        <Header as="h1">Welcome!</Header>
+      <Form style={padding}>
         <Form.Input
           type="email"
           fluid

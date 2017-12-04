@@ -6,6 +6,6 @@ import App from './components/App'
 render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
-  document.getElementById('root')
+  </BrowserRouter>
+  , document.getElementById('root')
 )

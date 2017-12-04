@@ -1,11 +1,11 @@
-export const main = {
+export const viewport = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   height: '100vh'
 }
 
-export const login = {
+export const container = {
   textAlign: 'center',
   width: '50%',
   maxWidth: '300px',

@@ -1,21 +1,38 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import { main, login, padBot } from '../styles'
-import { Segment } from 'semantic-ui-react'
+import { Switch, Route, Link } from 'react-router-dom'
+import { viewport, container } from '../styles'
+import { Menu, Segment } from 'semantic-ui-react'
 import Login from './Login'
-import Question from './Question'
+import QuestionsForm from './QuestionsForm'
 
-export default class App extends Component {
+class NavBar extends Component {
   state = {
-    name: '',
-    goals: []
+    activeItem: window.location.pathname,
   }
 
   render() {
+    return(
+      <Menu inverted>
+        <Menu.Item
+          as={Link}
+          to='/login'
+          name='Log In'
+          color='green'
+          onClick={(e, {to}) => this.setState({activeItem: to})}
+        />
+      </Menu>
+    )
+  }
+}
+
+export default class App extends Component {
+
+  render() {
     return (
-      <div style={main}>
-        <Segment style={login}>
-          <Login />
+      <div style={viewport}>
+        <Segment style={container}>
+          <Menu />
         </Segment>
       </div>
     )

@@ -64,5 +64,6 @@ Question.defaultProps = {
   icon: 'right chevron',
   popupIcon: 'info',
   color: 'green',
-  labelPosition: 'left'
+  labelPosition: 'left',
+  value: ''
 }

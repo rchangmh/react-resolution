@@ -6,7 +6,12 @@ import Login from './Login'
 import Question from './Question'
 
 export default class App extends Component {
-  state = {}
+  state = {
+    name: '',
+    goals: [],
+    
+
+  }
 
   render() {
     return (
@@ -14,6 +19,7 @@ export default class App extends Component {
         <Segment style={login}>
           <Question  
             handleSubmit={value => console.log(value)}
+            header='yo.'
           />
         </Segment>
       </div>

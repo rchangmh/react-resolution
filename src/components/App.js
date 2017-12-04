@@ -8,19 +8,14 @@ import Question from './Question'
 export default class App extends Component {
   state = {
     name: '',
-    goals: [],
-    
-
+    goals: []
   }
 
   render() {
     return (
       <div style={main}>
         <Segment style={login}>
-          <Question  
-            handleSubmit={value => console.log(value)}
-            header='yo.'
-          />
+          <Login />
         </Segment>
       </div>
     )

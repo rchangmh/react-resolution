@@ -9,11 +9,13 @@ export const container = {
   textAlign: 'center',
   width: '50%',
   maxWidth: '300px',
-  minWidth: '300px'
+  minWidth: '300px',
+  maxHeight: '90vh',
+  overflow: 'auto'
 }
 
 export const padding = {
-  padding: '15px',
+  padding: '15px'
 }
 
 export const transition = {

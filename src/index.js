@@ -36,11 +36,15 @@ const localStore = withClientState({
     addTodo: (_, variables, { cache }) => {
       const { message, title } = variables
       const current = cache.readQuery({ query, variables })
-      const data = {
-        todos: current.todos.concat([{ message, title, __typename: 'Todo' }])
-      }
-      cache.writeQuery({ query, variables, data })
-      return data
+      const newTodo = { message, title, __typename: 'Todo' }
+      cache.writeQuery({
+        query,
+        variables,
+        data: {
+          todos: current.todos.concat([newTodo])
+        }
+      })
+      return null
     }
   }
 })

@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Switch, Route } from 'react-router-dom'
+
 import { viewport, container } from '../styles'
 import { Segment } from 'semantic-ui-react'
+
+import NavBar from './NavBar'
 import Login from './Login'
 import QuestionsForm from './QuestionsForm'
-import NavBar from './NavBar'
+import Crud from './Crud'
 
 export default class App extends Component {
   render() {
@@ -16,6 +19,7 @@ export default class App extends Component {
           <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/questionsform" component={QuestionsForm} />
+            <Route exact path="/crud" component={Crud} />
           </Switch>
         </Segment>
       </div>

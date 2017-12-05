@@ -8,26 +8,17 @@ import { withClientState } from 'apollo-link-state'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import gql from 'graphql-tag'
 
-const query = gql`
-  query todos {
-    todos @client {
-      message
-      title
-    }
-  }
-`
-
 const localStore = withClientState({
   Query: {
     todos: () => [
       {
-        message: 'do this',
-        title: 'to do 1',
+        message: 'Do this.',
+        title: 'Item 1',
         __typename: 'Todo'
       },
       {
-        message: 'do that',
-        title: 'to do 2',
+        message: 'Do that.',
+        title: 'Item 2',
         __typename: 'Todo'
       }
     ]
@@ -35,6 +26,14 @@ const localStore = withClientState({
   Mutation: {
     addTodo: (_, variables, { cache }) => {
       const { message, title } = variables
+      const query = gql`
+        query todos {
+          todos @client {
+            message
+            title
+          }
+        }
+      `
       const current = cache.readQuery({ query, variables })
       const newTodo = { message, title, __typename: 'Todo' }
       cache.writeQuery({

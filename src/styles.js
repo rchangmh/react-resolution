@@ -8,9 +8,9 @@ export const viewport = {
 export const container = {
   textAlign: 'center',
   width: '50%',
-  maxWidth: '300px',
+  maxWidth: '1080px',
   minWidth: '300px',
-  maxHeight: '90vh',
+  maxHeight: '95vh',
   overflow: 'auto'
 }
 

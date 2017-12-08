@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
-import { container } from '../styles'
+import { drop } from '../styles'
 import FileDrop from 'react-file-drop'
 
 export default class File extends Component {
+  handleFiles = (files, event) => {
+    console.log(files, event)
+    // console.log(files[0].path)
+    // console.log(files[0])
+  }
+
   render() {
     return (
-      <div style={container}>
-        <p>test</p>
-        <FileDrop
-          targetAlwaysVisible="true"
-          onDrop={() => console.log('dropped!')}
-        />
+      <div style={drop}>
+        <FileDrop frame={document} onDrop={this.handleFiles}>
+          Drop files here!
+        </FileDrop>
       </div>
     )
   }

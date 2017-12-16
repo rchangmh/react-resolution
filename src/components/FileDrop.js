@@ -5,8 +5,7 @@ import FileDrop from 'react-file-drop'
 export default class File extends Component {
   handleFiles = (files, event) => {
     console.log(files, event)
-    // console.log(files[0].path)
-    // console.log(files[0])
+    console.log(files[0].name)
   }
 
   render() {

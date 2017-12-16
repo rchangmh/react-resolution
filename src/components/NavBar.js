@@ -4,54 +4,24 @@ import { Link } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
 
 export default class NavBar extends Component {
-  state = {
-    activeItem: window.location.pathname
-  }
+	state = {
+		activeItem: window.location.pathname
+	}
 
-  render() {
-    return (
-      <Menu inverted widths={5}>
-        <Menu.Item
-          as={Link}
-          to="/"
-          name="Home"
-          active={this.state.activeItem === '/'}
-          onClick={(e, { to }) => this.setState({ activeItem: to })}
-          color="teal"
-        />
-        <Menu.Item
-          as={Link}
-          to="/login"
-          name="Log In"
-          color="green"
-          active={this.state.activeItem === '/login'}
-          onClick={(e, { to }) => this.setState({ activeItem: to })}
-        />
-        <Menu.Item
-          as={Link}
-          to="/questionsform"
-          name="Form"
-          color="red"
-          active={this.state.activeItem === '/questionsform'}
-          onClick={(e, { to }) => this.setState({ activeItem: to })}
-        />
-        <Menu.Item
-          as={Link}
-          to="/crud"
-          name="Crud"
-          color="blue"
-          active={this.state.activeItem === '/crud'}
-          onClick={(e, { to }) => this.setState({ activeItem: to })}
-        />
-        <Menu.Item
-          as={Link}
-          to="/dnd"
-          name="File"
-          color="yellow"
-          active={this.state.activeItem === '/dnd'}
-          onClick={(e, { to }) => this.setState({ activeItem: to })}
-        />
-      </Menu>
-    )
-  }
+	render() {
+		return (
+			<Menu inverted widths={this.props.elements.length}>
+				{this.props.elements.map((element, index) => (
+					<Menu.Item
+						key={index}
+						as={Link}
+						to={`/${element}`}
+						name={element}
+						active={this.state.activeItem === `/${element}`}
+						onClick={(e, { to }) => this.setState({ activeItem: to })}
+					/>
+				))}
+			</Menu>
+		)
+	}
 }

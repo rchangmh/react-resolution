@@ -5,12 +5,18 @@ import { padding, transition } from '../styles'
 
 export default class Login extends Component {
   state = {
-    email: '',
-    password: '',
-    newUser: false,
-    name: '',
-    confirmEmail: '',
-    confirmPassword: ''
+    email: 'test@test.com',
+    password: '123456',
+    newUser: true,
+    name: 'Test',
+    confirmEmail: 'test@test.com',
+    confirmPassword: '123456'
+  }
+
+  handleSubmit = () => {
+    if (this.verifyInputs()) {
+      this.props.handleLogin(this.state)
+    }
   }
 
   verifyInputs = () => {
@@ -29,15 +35,15 @@ export default class Login extends Component {
       case newUser && confirmEmail === '':
       case newUser && confirmPassword === '':
         console.log('Cannot leave fields empty.')
-        break
+        return false
       case newUser && email !== confirmEmail:
         console.log('Email does not match.')
-        break
+        return false
       case newUser && password !== confirmPassword:
         console.log('Passwords do not match.')
-        break
+        return false
       default:
-        console.log(this.state)
+        return true
     }
   }
 
@@ -59,7 +65,7 @@ export default class Login extends Component {
           icon="lock"
           iconPosition="left"
           placeholder="Password"
-          type="password"
+          // type="password"
           onChange={e => this.setState({ password: e.target.value })}
           value={this.state.password}
         />
@@ -108,7 +114,7 @@ export default class Login extends Component {
               icon="lock"
               iconPosition="left"
               placeholder="Re-enter password"
-              type="password"
+              // type="password"
               onChange={e => this.setState({ confirmPassword: e.target.value })}
               value={this.state.confirmPassword}
             />
@@ -116,7 +122,7 @@ export default class Login extends Component {
         </Transition>
 
         <div style={padding}>
-          <Button fluid size="large" onClick={() => this.verifyInputs()}>
+          <Button fluid size="large" onClick={this.handleSubmit}>
             {this.state.newUser ? 'SIGN UP' : 'LOG IN'}
           </Button>
         </div>

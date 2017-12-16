@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Input, Label, Header, Popup, Icon } from 'semantic-ui-react'
 import { login, padding, transition } from '../styles'
 
-export default class Question extends Component {
+export default class GetInput extends Component {
 	state = {
 		value: this.props.value
 	}
@@ -46,7 +46,7 @@ export default class Question extends Component {
 	}
 }
 
-Question.propTypes = {
+GetInput.propTypes = {
 	handleSubmit: PropTypes.func.isRequired,
 	header: PropTypes.string.isRequired,
 	labelPosition: PropTypes.string,
@@ -60,7 +60,7 @@ Question.propTypes = {
 	placeholder: PropTypes.string
 }
 
-Question.defaultProps = {
+GetInput.defaultProps = {
 	icon: 'right chevron',
 	popupIcon: 'info',
 	color: 'green',

@@ -1,0 +1,1 @@
+export const graphql_endpoint = "https://api.graph.cool/simple/v1/cjb9okn7k1ddu0182fewdzkw9"

@@ -1,1 +1,4 @@
-export const graphql_endpoint = "https://api.graph.cool/simple/v1/cjb9okn7k1ddu0182fewdzkw9"
+export const graphql_endpoint =
+	'https://api.graph.cool/simple/v1/cjba55ohd24n10176gbqkd787'
+
+export const id = 'cjba5h38taabs0172fcohdjx5'

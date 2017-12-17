@@ -9,7 +9,7 @@ import NavBar from '../components/NavBar'
 import LoginContainer from './LoginContainer'
 import Max from './Max'
 import Add from '../components/Add'
-import New from '../containers/New'
+import New from './New'
 
 export default class App extends Component {
 	state = {

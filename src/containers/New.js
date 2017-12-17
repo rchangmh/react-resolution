@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import GetInput from '../components/GetInput'
 import { Link } from 'react-router-dom'
 import { Button, Form, Header } from 'semantic-ui-react'
+import { padding } from '../styles.js'
 
 export default class New extends Component {
 	state = {
@@ -53,9 +53,19 @@ export default class New extends Component {
 					onChange={event =>
 						this.setState({ amountDedicated: event.target.value })}
 				/>
-				<Form.Button as={Link} onClick={this.handleSubmit()}>
-					Submit
-				</Form.Button>
+				<Button.Group style={padding}>
+					<Button as={Link} to={'/add'}>
+						Cancel
+					</Button>
+					<Button.Or />
+					<Button
+						as={Link}
+						to={'/add/new'}
+						positive
+						onClick={this.handleSubmit}>
+						Submit
+					</Button>
+				</Button.Group>
 			</div>
 		)
 	}

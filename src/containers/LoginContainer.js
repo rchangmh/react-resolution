@@ -9,14 +9,14 @@ class LoginContainer extends Component {
 		console.log(state)
 		const { email, password, name, newUser } = state
 		if (newUser) {
-			await this.props.createUserMutation({
+			const data = await this.props.createUserMutation({
 				variables: {
 					email: email,
 					password: password,
 					name: name
 				}
 			})
-			console.log('done!')
+			console.log(data)
 		}
 	}
 

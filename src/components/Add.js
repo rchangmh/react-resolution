@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { Button, Header, Message, Progress, Confirm } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import gql from 'graphql-tag'
+import { graphql } from 'react-apollo'
+import { id } from '../constants'
 
-export default class Add extends Component {
+class Add extends Component {
 	state = {
 		showConfirm: false,
 		activities: [
@@ -13,6 +16,16 @@ export default class Add extends Component {
 				amountDedicated: '500'
 			}
 		]
+	}
+
+	componentDidMount = async () => {
+		console.log(id)
+		// const data = await this.props.getGoals({
+		// 	variables: {
+		// 		id: id
+		// 	}
+		// })
+		// console.log(data)
 	}
 
 	handleDismiss = () => {
@@ -58,3 +71,21 @@ export default class Add extends Component {
 		)
 	}
 }
+
+// const QUERY_GOALS = gql`
+// 	query getGoals($id: ID!) {
+// 		User(id: $id) {
+// 			goals {
+// 				activity
+// 				goal
+// 				metric
+// 				amountDedicated
+// 			}
+// 		}
+// 	}
+// `
+// export default graphql(QUERY_GOALS, {
+// 	name: 'getGoals'
+// })(Add)
+
+export default Add

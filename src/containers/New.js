@@ -1,10 +1,24 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Button, Form, Header } from 'semantic-ui-react'
+import { Link, Redirect } from 'react-router-dom'
+import {
+	Confirm,
+	Button,
+	Form,
+	Header,
+	Dimmer,
+	Loader
+} from 'semantic-ui-react'
+import { Spin, Alert } from 'antd'
 import { padding } from '../styles.js'
+import gql from 'graphql-tag'
+import { graphql } from 'react-apollo'
+import { id } from '../constants'
 
-export default class New extends Component {
+class New extends Component {
 	state = {
+		showConfirm: false,
+		redirect: false,
+		loading: true,
 		activity: '_____',
 		goal: '_____',
 		metric: '_____',
@@ -16,15 +30,47 @@ export default class New extends Component {
 		console.log(this.state)
 	}
 
-	handleSubmit = () => {
-		console.log(this.state)
+	handleSubmit = async () => {
+		this.setState({ loading: true })
+		const response = await this.props.addGoal({
+			variables: {
+				id: id,
+				activity: this.state.activity,
+				goal: parseInt(this.state.goal),
+				metric: this.state.metric,
+				amountDedicated: parseFloat(this.state.amountDedicated)
+			}
+		})
+		console.log(response.data.createGoal.activity)
+		this.setState({ loading: false, showConfirm: true })
+	}
+
+	handleCancel = () => {
+		this.setState({ showConfirm: false, redirect: true })
+	}
+
+	handleConfirm = () => {
+		this.setState({
+			showConfirm: false,
+			activity: '_____',
+			goal: '_____',
+			metric: '_____',
+			amountDedicated: '_____'
+		})
 	}
 
 	render() {
 		return (
 			<div>
-				<Header>{`I want to ${this.state.activity} ${this.state.goal} ${this
-					.state.metric} this year.`}</Header>
+				<Spin spinning={this.state.loading}>
+					<Alert
+						message="Alert message title"
+						description="Further details about the context of this alert."
+						type="info"
+					/>
+					<Header>{`I want to ${this.state.activity} ${this.state.goal} ${this
+						.state.metric} this year.`}</Header>
+				</Spin>
 				<p>
 					Example: I want to <u>exercise</u> <u>180</u> <u>days</u> this year.
 				</p>
@@ -66,7 +112,46 @@ export default class New extends Component {
 						Submit
 					</Button>
 				</Button.Group>
+
+				{this.state.redirect && <Redirect to="/add" />}
+				{this.state.showConfirm && (
+					<Confirm
+						open={this.state.showConfirm}
+						content="Goal added!"
+						cancelButton="Go Back"
+						confirmButton="Add More"
+						onCancel={this.handleCancel}
+						onConfirm={this.handleConfirm}
+					/>
+				)}
 			</div>
 		)
 	}
 }
+
+const ADD_GOAL = gql`
+	mutation addGoal(
+		$id: ID!
+		$activity: String!
+		$goal: Int!
+		$metric: String!
+		$amountDedicated: Float!
+	) {
+		createGoal(
+			activity: $activity
+			goal: $goal
+			metric: $metric
+			userId: $id
+			amountDedicated: $amountDedicated
+		) {
+			id
+			activity
+			goal
+			metric
+		}
+	}
+`
+
+export default graphql(ADD_GOAL, {
+	name: 'addGoal'
+})(New)

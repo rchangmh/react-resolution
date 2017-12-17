@@ -8,7 +8,7 @@ import { id } from '../constants'
 class Max extends Component {
 	state = {
 		id: id,
-		max: '',
+		max: 0.0,
 		loading: false
 	}
 
@@ -17,7 +17,7 @@ class Max extends Component {
 		this.setState({ loading: !this.state.loading })
 		const data = await this.props.addMaxMutation({
 			variables: {
-				id: this.state.id,
+				id: id,
 				max: this.state.max
 			}
 		})
@@ -37,7 +37,8 @@ class Max extends Component {
 					icon="dollar"
 					iconPosition="left"
 					type="text"
-					onChange={event => this.setState({ max: event.target.value })}
+					onChange={event =>
+						this.setState({ max: parseFloat(event.target.value) })}
 					action={{
 						color: 'green',
 						icon: 'right chevron',
@@ -50,7 +51,7 @@ class Max extends Component {
 }
 
 const ADD_MAX_MUTATION = gql`
-	mutation addMaxMutation($id: ID!, $max: String!) {
+	mutation addMaxMutation($id: ID!, $max: Float!) {
 		updateUser(id: $id, max: $max) {
 			id
 			max

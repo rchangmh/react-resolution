@@ -66,7 +66,14 @@ class Add extends Component {
 							/>
 						</Message>
 					))}
-				<Button as={Link} to="/add/new" size="large" icon="add" />
+				<Button
+					as={Link}
+					to="/add/new"
+					size="large"
+					icon="add"
+					inverted
+					color="green"
+				/>
 			</div>
 		)
 	}

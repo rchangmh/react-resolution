@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { Form, Header, Popup, Icon } from 'semantic-ui-react'
-import Input from '../components/Form'
-import { padding } from '../styles'
+import { Form, Header, Popup, Icon, Input } from '/src/styles'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
-import { id } from '../constants'
+import { id } from '/src/constants'
 
 class Max extends Component {
 	state = {

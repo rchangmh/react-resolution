@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-import { viewport, container } from '../styles'
-import { Segment } from 'semantic-ui-react'
-
+import { Segment, viewport, container } from '/src/styles'
 import NavBar from '../components/NavBar'
 import LoginContainer from './LoginContainer'
 import Max from './Max'

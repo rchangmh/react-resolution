@@ -4,6 +4,9 @@ import { Input as AntdInput } from 'antd'
 
 export default class MyInput extends Component {
 	render() {
-		return <SemanticInput />
+		if (this.props.inputtype === 'dollar') {
+			return <AntdInput {...this.props} />
+		}
+		return <SemanticInput {...this.props} />
 	}
 }

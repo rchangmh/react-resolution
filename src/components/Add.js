@@ -20,6 +20,12 @@ class Add extends Component {
 
   componentDidMount = async () => {
     console.log(id)
+    const queryResult = await this.props.getGoals({
+      variables: {
+        id: id
+      }
+    })
+    await console.log(queryResult.data)
     // const data = await this.props.getGoals({
     // 	variables: {
     // 		id: id
@@ -79,20 +85,29 @@ class Add extends Component {
   }
 }
 
-// const QUERY_GOALS = gql`
-// 	query getGoals($id: ID!) {
-// 		User(id: $id) {
-// 			goals {
-// 				activity
-// 				goal
-// 				metric
-// 				amountDedicated
-// 			}
+const QUERY_GOALS = gql`
+  query getGoals($id: ID!) {
+    User(id: $id) {
+      goals {
+        activity
+        goal
+        metric
+        amountDedicated
+      }
+    }
+  }
+`
+export default graphql(QUERY_GOALS, {
+  name: 'getGoals'
+})(Add)
+
+// const query = gql`
+// 	query todos {
+// 		todos @client {
+// 			message
+// 			title
 // 		}
 // 	}
 // `
-// export default graphql(QUERY_GOALS, {
-// 	name: 'getGoals'
-// })(Add)
 
-export default Add
+// export default Add

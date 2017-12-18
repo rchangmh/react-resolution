@@ -15,13 +15,32 @@ import {
   Menu as SemMenu
 } from 'semantic-ui-react'
 import { Input as AntInput, Spin as AntSpin } from 'antd'
+import validator from 'validator'
 
 export class Input extends Component {
+  state = {
+    value: '',
+    error: false,
+    ...this.props
+  }
+
+  validateSem = event => {
+    this.setState({ value: event.target.value }, () => {
+      switch (true) {
+        case validator.isInt(this.state.value):
+          this.setState({ error: true })
+          console.log('error')
+          break
+        default:
+          this.setState({ error: false })
+          console.log(this.state)
+      }
+    })
+    this.props.onChange && this.props.onChange()
+  }
+
   render() {
-    if (this.props.inputtype === 'dollar') {
-      return <AntInput {...this.props} />
-    }
-    return <SemInput {...this.props} />
+    return <SemInput {...this.state} onChange={this.validateSem} />
   }
 }
 

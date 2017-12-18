@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { render } from 'react-dom'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 import Login from '../components/Login'

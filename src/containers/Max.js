@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Header, Popup, Icon } from 'semantic-ui-react'
+import Input from '../components/Form'
 import { padding } from '../styles'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
@@ -28,6 +29,7 @@ class Max extends Component {
 	render() {
 		return (
 			<div>
+				<Input inputtype="dollar" loading={true} />
 				<Header>How much can you spend towards your goals this year?</Header>
 
 				<Form.Input

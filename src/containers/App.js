@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { render } from 'react-dom'
 import { Switch, Route } from 'react-router-dom'
 
 import { viewport, container } from '../styles'

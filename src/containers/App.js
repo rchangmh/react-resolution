@@ -9,28 +9,20 @@ import Add from '../components/Add'
 import New from './New'
 
 export default class App extends Component {
-	state = {
-		email: '',
-		password: '',
-		newUser: false,
-		name: '',
-		confirmEmail: '',
-		confirmPassword: ''
-	}
-
-	render() {
-		return (
-			<div style={viewport}>
-				<Segment style={container}>
-					<NavBar elements={['', 'login', 'max', 'add']} />
-					<Switch>
-						<Route exact path="/login" component={LoginContainer} />
-						<Route exact path="/max" component={Max} />
-						<Route exact path="/add" component={Add} />
-						<Route exact path="/add/new" component={New} />
-					</Switch>
-				</Segment>
-			</div>
-		)
-	}
+  render() {
+    return (
+      <div style={viewport}>
+        <Segment style={container}>
+          <NavBar elements={['', 'login', 'max', 'add', 'crud']} />
+          <Switch>
+            <Route exact path="/login" component={LoginContainer} />
+            <Route exact path="/max" component={Max} />
+            <Route exact path="/add" component={Add} />
+            <Route exact path="/add/new" component={New} />
+            <Route exact path="/crud" component={Crud} />
+          </Switch>
+        </Segment>
+      </div>
+    )
+  }
 }

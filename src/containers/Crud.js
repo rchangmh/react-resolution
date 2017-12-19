@@ -122,7 +122,7 @@ class Crud extends Component {
 
 export default graphql(
 	gql`
-		query($id: ID!) {
+		query readUserGoals($id: ID!) {
 			User(id: $id) {
 				goals {
 					id
@@ -131,6 +131,7 @@ export default graphql(
 		}
 	`,
 	{
+		name: 'readUserGoals',
 		options: {
 			variables: { id: id }
 		}

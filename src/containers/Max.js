@@ -27,10 +27,10 @@ class Max extends Component {
   render() {
     return (
       <div>
-        <Input inputtype="email" loading={true} />
         <Header>How much can you spend towards your goals this year?</Header>
 
         <Form.Input
+          style={{ marginBottom: '15px' }}
           loading={this.state.loading}
           required
           placeholder="0.00"
@@ -39,11 +39,13 @@ class Max extends Component {
           type="text"
           onChange={event =>
             this.setState({ max: parseFloat(event.target.value) })}
-          action={{
-            color: 'green',
-            icon: 'right chevron',
-            onClick: this.handleSubmit
-          }}
+        />
+
+        <Form.Button
+          onClick={this.handleSubmit}
+          inverted
+          color="green"
+          icon="right chevron"
         />
       </div>
     )

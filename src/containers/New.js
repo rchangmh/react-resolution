@@ -8,6 +8,7 @@ import {
   Modal,
   Icon,
   Spin,
+  Transition,
   padding
 } from '/src/styles'
 import gql from 'graphql-tag'
@@ -22,12 +23,8 @@ class New extends Component {
     activity: '',
     goal: '',
     metric: '',
-    amountDedicated: ''
-  }
-
-  handleChange = value => {
-    this.setState({ metric: value })
-    console.log(this.state)
+    amountDedicated: '',
+    examples: [['read', '20', 'books'], ['exercise', '150', 'days']]
   }
 
   handleSubmit = async () => {
@@ -42,7 +39,6 @@ class New extends Component {
           amountDedicated: parseFloat(this.state.amountDedicated)
         }
       })
-      console.log(response.data.createGoal.activity)
       this.setState({ loading: false, showConfirm: true })
     } catch (error) {
       console.log(error)
@@ -55,7 +51,6 @@ class New extends Component {
   }
 
   handleConfirm = () => {
-    console.log('clicked confirm')
     this.setState({
       showConfirm: false,
       activity: '',
@@ -76,10 +71,15 @@ class New extends Component {
             : this.state.goal} ${this.state.metric === ''
             ? '_____'
             : this.state.metric} this year.`}</Header>
+          {this.state.examples.map((example, index) => (
+            <Transition visible={true} animation="fade" duration={100}>
+              <p key={index}>
+                Example: I want to <u>{example[0]}</u> <u>{example[1]}</u>{' '}
+                <u>{example[2]}</u> this year.
+              </p>
+            </Transition>
+          ))}
 
-          <p>
-            Example: I want to <u>exercise</u> <u>180</u> <u>days</u> this year.
-          </p>
           <Form.Input
             required
             placeholder="activity"

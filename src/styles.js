@@ -14,8 +14,24 @@ import {
   Modal as SemModal,
   Menu as SemMenu
 } from 'semantic-ui-react'
-import { Input as AntInput, Spin as AntSpin } from 'antd'
+import {
+  Input as AntInput,
+  Spin as AntSpin,
+  Progress as AntProgress
+} from 'antd'
 import validator from 'validator'
+
+export class Progress extends Component {
+  state = {
+    ...this.props,
+    percent: Math.ceil(this.props.percent),
+    progress: true
+  }
+
+  render() {
+    return <SemProgress {...this.state} />
+  }
+}
 
 export class Input extends Component {
   state = {
@@ -91,7 +107,6 @@ export {
   SemMessage as Message,
   SemTransition as Transition,
   SemHeader as Header,
-  SemProgress as Progress,
   SemConfirm as Confirm,
   SemModal as Modal,
   AntSpin as Spin

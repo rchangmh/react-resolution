@@ -62,28 +62,30 @@ class Crud extends Component {
 	//   console.log(this.state.users)
 	// }
 
-	render() {
-		return <Button onClick={this.handleSubmit} icon="stop" />
-	}
-
 	// render() {
-	// 	console.log(
-	// 		this.props.simpleQuery.User ? this.props.simpleQuery.User.goals : 'none'
-	// 	)
-	// 	if (this.props.simpleQuery.User && this.props.simpleQuery.User.loading) {
-	// 		return <div>Loading</div>
-	// 	} else {
-	// 		return (
-	// 			<div>
-	// 				{this.props.simpleQuery.User &&
-	// 					this.props.simpleQuery.User.goals.map((goal, index) => (
-	// 						<div key={index}>goal id {goal.id}</div>
-	// 					))}
-	// 				<Button onClick={this.handleSubmit} icon="stop" />
-	// 			</div>
-	// 		)
-	// 	}
+	// 	return <Button onClick={this.handleSubmit} icon="stop" />
 	// }
+
+	render() {
+		console.log(
+			this.props.readUserGoals.User ? this.props.readUserGoals.User.goals : 'none'
+		)
+		if (this.props.readUserGoals.User && this.props.readUserGoals.User.loading) {
+			return <div>Loading</div>
+		} else {
+			return (
+				<div>
+					{this.props.readUserGoals.User &&
+						this.props.readUserGoals.User.goals.map((goal, index) => (
+							<div key={index}>
+								{`I want to ${goal.activity} ${goal.goal} ${goal.metric} this year.`}
+							</div>
+						))}
+					<Button onClick={this.handleSubmit} icon="stop" />
+				</div>
+			)
+		}
+	}
 }
 
 // export default graphql(gql`query { ... }`)(MyComponent);
@@ -125,7 +127,10 @@ export default graphql(
 		query readUserGoals($id: ID!) {
 			User(id: $id) {
 				goals {
-					id
+					activity
+ 					goal
+ 					metric
+					amountDedicated
 				}
 			}
 		}

@@ -4,7 +4,7 @@ import { Menu } from '/src/styles'
 
 export default class NavBar extends Component {
   state = {
-    activeItem: window.location.pathname
+    activeItem: window.location.pathname,
   }
 
   render() {

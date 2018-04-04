@@ -1,6 +1,6 @@
 {
-  "name": "react-test",
-  "description": null,
+  "name": "react-resolution",
+  "description": "",
   "version": "0.0.181",
   "dependencies": {
     "antd": "3.4.0",
@@ -23,5 +23,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "keywords": []
 }

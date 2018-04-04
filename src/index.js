@@ -12,7 +12,7 @@ import App from './containers/App'
 
 export const client = new ApolloClient({
   link: new HttpLink({ uri: graphql_endpoint }),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 })
 
 render(
